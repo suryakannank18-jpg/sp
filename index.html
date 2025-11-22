@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Love Confession to You, Prashali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #ffb6c1 0%, #ff5c8d 30%, #2b1331 80%);
+      --accent: #ff9fbf;
+      --accent-strong: #ff3166;
+      --text-main: #fff4f7;
+      --text-soft: #ffd7e5;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border-soft: rgba(255, 255, 255, 0.25);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #140814;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* Floating heart background */
+    .heart-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--bg-gradient);
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-strong);
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: floatUp 12s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 170, 190, 0.8));
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-strong);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(20vh) scale(0.7) rotate(45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Layout */
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(24px);
+      background: linear-gradient(to bottom, rgba(11, 4, 16, 0.9), rgba(11, 4, 16, 0.25));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .nav-title span.logo-heart {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--accent-strong);
+      text-shadow: 0 0 14px rgba(255, 78, 125, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 4.5rem 1.25rem;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: center;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      background: rgba(23, 7, 28, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(18px);
+      color: var(--text-soft);
+    }
+
+    .hero-badge span.icon {
+      font-size: 0.95rem;
+    }
+
+    .hero-title {
+      margin-top: 1.25rem;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 600;
+    }
+
+    .hero-title .script {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.15em;
+      color: var(--accent-strong);
+      display: inline-block;
+      text-shadow: 0 0 18px rgba(255, 89, 135, 0.8);
+    }
+
+    .hero-subtitle {
+      margin-top: 0.9rem;
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 32rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero-subtitle {
+        margin-inline: auto;
+      }
+    }
+
+    .hero-actions {
+      margin-top: 1.7rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero-actions {
+        justify-content: center;
+      }
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.7rem 1.45rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-primary {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: linear-gradient(135deg, #ff6b9c, #ff3062);
+      box-shadow: 0 16px 36px rgba(255, 61, 120, 0.6);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 22px 46px rgba(255, 61, 120, 0.75);
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(18, 3, 29, 0.9);
+      color: var(--text-soft);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: rgba(30, 5, 46, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      opacity: 0.8;
+    }
+
+    .hero-note span {
+      color: var(--accent);
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 1.75rem;
+      padding: 1.7rem 1.6rem;
+      background: radial-gradient(circle at top left, rgba(255, 139, 183, 0.25), rgba(7, 1, 18, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card-blur {
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 204, 230, 0.08) 0, transparent 55%),
+        radial-gradient(circle at 80% 120%, rgba(255, 120, 180, 0.14) 0, transparent 60%);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .hero-card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-soft);
+      opacity: 0.8;
+    }
+
+    .hero-card-quote {
+      margin-top: 0.75rem;
+      font-family: "Great Vibes", cursive;
+      font-size: 1.6rem;
+      line-height: 1.4;
+      color: #ffe3ee;
+    }
+
+    .hero-card-body {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .hero-card-footer {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-soft);
+    }
+
+    .hero-card-footer span.name {
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .hero-card-footer small {
+      opacity: 0.9;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    /* Section headings */
+    .section-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-soft);
+      opacity: 0.85;
+    }
+
+    .section-title {
+      margin-top: 0.5rem;
+      font-size: clamp(1.6rem, 2.4vw, 2rem);
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      margin-top: 0.45rem;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      max-width: 32rem;
+      margin-inline: auto;
+    }
+
+    /* Reasons section */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .reason-card {
+      position: relative;
+      border-radius: 1.3rem;
+      padding: 1.3rem 1.25rem 1.4rem;
+      background: var(--glass);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+
+    .reason-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0% 0%, rgba(255, 150, 195, 0.22), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .reason-card:hover::before {
+      opacity: 1;
+    }
+
+    .reason-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+
+    .reason-title {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .reason-text {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    /* Memories / scrolling text */
+    .memory-wrapper {
+      border-radius: 1.4rem;
+      padding: 1.3rem;
+      background: radial-gradient(circle at 0% 0%, rgba(255, 153, 204, 0.26), rgba(12, 3, 17, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: var(--shadow-soft);
+      max-width: 820px;
+      margin-inline: auto;
+      overflow: hidden;
+    }
+
+    .memory-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .memory-title {
+      margin-top: 0.5rem;
+      font-family: "Great Vibes", cursive;
+      font-size: 1.8rem;
+      color: #fff2f7;
+    }
+
+    .memory-scroll {
+      margin-top: 1rem;
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 190, 220, 0.8) transparent;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    .memory-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .memory-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .memory-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 190, 220, 0.85);
+      border-radius: 999px;
+    }
+
+    .memory-line {
+      opacity: 0.92;
+      margin-bottom: 0.5rem;
+    }
+
+    .memory-line span.bullet {
+      margin-right: 0.35rem;
+    }
+
+    /* Final confession */
+    .confession-card {
+      max-width: 720px;
+      margin-inline: auto;
+      text-align: center;
+      border-radius: 1.6rem;
+      padding: 2rem 1.4rem 2.2rem;
+      background: linear-gradient(145deg, rgba(255, 122, 170, 0.18), rgba(10, 1, 17, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .confession-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: conic-gradient(from 200deg, rgba(255, 255, 255, 0.3), transparent 40%, rgba(255, 160, 210, 0.5), transparent 80%);
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .confession-line1 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--text-soft);
+    }
+
+    .confession-main {
+      margin-top: 0.75rem;
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      font-family: "Great Vibes", cursive;
+      color: #ffe5f0;
+      text-shadow: 0 0 18px rgba(255, 112, 164, 0.85);
+    }
+
+    .confession-body {
+      margin-top: 0.9rem;
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 32rem;
+      margin-inline: auto;
+      white-space: pre-line;
+    }
+
+    .confession-name {
+      margin-top: 1.4rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .confession-name span {
+      color: var(--accent-strong);
+      font-family: "Great Vibes", cursive;
+      font-size: 1.5rem;
+    }
+
+    .confession-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+
+    .tiny-note {
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
+
+    footer {
+      padding: 2rem 1.25rem 3rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      opacity: 0.85;
+    }
+
+    footer span.heart {
+      color: var(--accent-strong);
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated hearts background -->
+  <div class="heart-bg" id="heartBg"></div>
+
+  <div class="wrapper">
+    <header>
+      <nav class="nav">
+        <div class="nav-title">
+          <span class="logo-heart">♡</span>
+          <span>My Heart, My Words for You, Prashali</span>
+        </div>
+        <div class="nav-links">
+          <a href="#reasons">Reasons</a>
+          <a href="#memories">Memories</a>
+          <a href="#confession">Confession</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="hero">
+        <div class="container hero">
+          <div>
+            <div class="hero-badge">
+              <span class="icon">💌</span>
+              <span>For you, from the deepest part of my heart</span>
+            </div>
+
+            <h1 class="hero-title">
+              From the first day of college, my heart chose you,<br />
+              <span class="script" id="heroName">this is my confession to you, Prashali.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              I kept these words in my heart for so long. Today, I turned them into this little corner of the internet,
+              so you can read how honestly and deeply I feel about you.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="scrollToSection('confession')">
+                Read my confession
+                <span>➜</span>
+              </button>
+              <button class="btn-ghost" onclick="scrollToSection('reasons')">
+                Why I fell for you
+              </button>
+            </div>
+
+            <p class="hero-note">
+              Scroll to see my heart, line by line. <span>Every word is for you, only you.</span>
+            </p>
+          </div>
+
+          <!-- Right hero card -->
+          <div class="hero-card">
+            <div class="hero-card-blur"></div>
+            <div class="hero-card-label">A few words before you start reading</div>
+            <div class="hero-card-quote">
+              “From the very first day of college, when I saw you for the first time,
+              my heart chose you. Four years have passed, but that feeling has never changed.”
+            </div>
+            <p class="hero-card-body">
+              I don’t know how you will feel after reading this. I only know one thing:
+              I never wanted to hide my feelings from you forever. So I wrote them here, honestly, as they are.
+            </p>
+            <div class="hero-card-footer">
+              <div>
+                <span class="name">Surya</span><br />
+                <small>the one who quietly fell in love with you</small>
+              </div>
+              <div class="pill">
+                ⏳ I’ve loved you for
+                <strong>4 years, and my heart is still the same</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REASONS -->
+      <section id="reasons">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Why I Fell For You</div>
+            <h2 class="section-title">Little reasons that became everything</h2>
+            <p class="section-subtitle">
+              It didn’t happen in one moment. It was a slow, soft collection of tiny things you did,
+              that my heart never forgot, from that first day of college till today.
+            </p>
+          </div>
+
+          <div class="reasons-grid">
+            <!-- Reason 1 -->
+            <article class="reason-card">
+              <div class="reason-tag">Reason 01</div>
+              <h3 class="reason-title">The way you make my world peaceful</h3>
+              <p class="reason-text">
+                Even when my day is heavy, one thought of you or one small memory of you
+                makes everything feel lighter. You don’t even try, but somehow, you calm my chaos.
+              </p>
+            </article>
+
+            <!-- Reason 2 -->
+            <article class="reason-card">
+              <div class="reason-tag">Reason 02</div>
+              <h3 class="reason-title">Your kindness, even when no one is watching</h3>
+              <p class="reason-text">
+                The way you listen, the way you care about people, the way you treat even small things with softness—
+                those are the moments that made me realise my heart was already choosing you.
+              </p>
+            </article>
+
+            <!-- Reason 3 -->
+            <article class="reason-card">
+              <div class="reason-tag">Reason 03</div>
+              <h3 class="reason-title">Your laugh & your presence</h3>
+              <p class="reason-text">
+                There’s something about your laugh that feels like home to me.
+                When you’re around, everything else fades a little.
+                In any room, my eyes always search for you first, and they relax only after finding you.
+              </p>
+            </article>
+
+            <!-- Reason 4 -->
+            <article class="reason-card">
+              <div class="reason-tag">Reason 04</div>
+              <h3 class="reason-title">You made me want to be better</h3>
+              <p class="reason-text">
+                You inspire me without even knowing it.
+                I started dreaming bigger, working harder, and believing in myself more—
+                all because I imagined a future where I am standing beside you, not behind you.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMORIES / SCROLLING MESSAGES -->
+      <section id="memories">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Memories & Little Moments</div>
+            <h2 class="section-title">My heart remembers everything about you</h2>
+            <p class="section-subtitle">
+              These are a few moments my mind keeps replaying.
+              Maybe for you they were normal days,
+              but for me, they became special memories written deeply inside my heart.
+            </p>
+          </div>
+
+          <div class="memory-wrapper">
+            <div class="memory-label">Scroll through my thoughts</div>
+            <div class="memory-title">The story of how I fell for you, slowly</div>
+
+            <div class="memory-scroll">
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                From the very first day of college, my eyes started searching for you in every classroom,
+                every corridor, and every crowd.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                I still remember the first time I properly saw you.
+                To others it was just a normal day, but to my heart, it was the day everything started.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                Four years passed, but my heart is still living in that first moment I saw you.
+                It still beats a little faster every time I think of you.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                Every time my phone lights up, I secretly wish it’s your name.
+                Even if we don’t talk every day, not a single day passes without me thinking about you.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                I may not be funny, I may not be the one who makes the whole room laugh,
+                but in my heart, I only wish to be the one who never lets you feel alone.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                I don’t want many people in my life. I just want one lifetime with you, only you, Prashali.
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                If God gave me only one wish, I would not ask for money, success, or fame.
+                I would simply say: “Please keep her with me, safely and happily.”
+              </p>
+              <p class="memory-line">
+                <span class="bullet">✧</span>
+                Your smile feels like home to me.
+                I want to see that smile on your face every day, even if I am standing far away, silently.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CONFESSION -->
+      <section id="confession">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">The Truth</div>
+            <h2 class="section-title">What my heart has been wanting to say</h2>
+            <p class="section-subtitle">
+              I don’t know the future. I don’t know how you will feel after reading this.
+              But I know I want to be honest with you—right here, right now.
+            </p>
+          </div>
+
+          <div class="confession-card">
+            <div class="confession-line1">So here it is...</div>
+            <div class="confession-main">
+              I am in love with you, Prashali.
+            </div>
+            <p class="confession-body">
+I have loved you for 4 years, Prashali.
+From the very first day of college, when my eyes saw you, something inside me changed.
+It looked like a normal moment to the world, but to my heart, it became the beginning of everything.
+
+My love for you is pure.
+I don’t love you for time pass, I don’t love you for fun.
+I am not a comedian—I can't always make you laugh with jokes.
+But I can promise you something much stronger than jokes:
+
+In every hard time, in every dark day, I will stand next to you.
+No matter what.
+
+Even if the whole world stands against me,
+my heart will still stand with you.
+If life becomes difficult, I will be the one holding your hand tighter.
+
+Every day I silently ask God one thing:
+
+“Please… if it is written anywhere, let me live my life with her.
+Let me protect her, care for her, and love her until my last breath.”
+
+Whether you accept me or not…
+whether you ever love me back or not…
+
+My feelings for you are real.
+They are not a joke.
+They are not a game.
+
+I love you, Prashali.
+With all of my heart, for 4 years…
+and for the rest of my life too.
+            </p>
+
+            <p class="confession-name">
+              With all my love,<br />
+              <span>Surya</span>
+            </p>
+
+            <div class="confession-actions">
+              <button class="btn-primary">
+                If you ever feel the same, even a little, tell me. 💖
+              </button>
+              <button class="btn-ghost">
+                If you don’t… I will still be grateful that I met you.
+              </button>
+            </div>
+
+            <p class="tiny-note">
+              No matter what your answer is, I promise to respect your feelings.  
+              Thank you for reading my heart, from the first day of college till today.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Built with <span class="heart">♥</span> just for you, Prashali.<br />
+      This page will always be a reminder of my honest feelings.
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    // Floating hearts generator
+    const heartBg = document.getElementById("heartBg");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+
+      const size = Math.random() * 16 + 10; // 10px - 26px
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+
+      const left = Math.random() * 100;
+      heart.style.left = left + "vw";
+
+      const duration = Math.random() * 8 + 8; // 8s - 16s
+      heart.style.animationDuration = duration + "s";
+      heart.style.opacity = Math.random() * 0.6 + 0.2;
+
+      heartBg.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000 + 1000);
+    }
+
+    // Create hearts regularly
+    setInterval(createHeart, 800);
+    // Spawn some at start
+    for (let i = 0; i < 12; i++) {
+      setTimeout(createHeart, i * 200);
+    }
+  </script>
+</body>
+</html>
