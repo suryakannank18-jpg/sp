@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Journey Starts Here – Surya & Prashali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #ffb6c1 0%, #ff5c8d 30%, #2b1331 80%);
+      --accent: #ff9fbf;
+      --accent-strong: #ff3166;
+      --text-main: #fff4f7;
+      --text-soft: #ffd7e5;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border-soft: rgba(255, 255, 255, 0.25);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #140814;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .heart-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--bg-gradient);
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-strong);
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: floatUp 12s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 170, 190, 0.8));
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-strong);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -9px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -9px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(20vh) scale(0.7) rotate(45deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    header {
+      padding: 1rem 1.25rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .back-link {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(10, 0, 18, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--text-soft);
+    }
+
+    .back-link:hover {
+      border-color: var(--accent);
+    }
+
+    main {
+      flex: 1;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      margin-top: 0.7rem;
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      font-weight: 600;
+    }
+
+    .hero-title span.script {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.2em;
+      color: var(--accent-strong);
+      display: block;
+      margin-top: 0.35rem;
+      text-shadow: 0 0 18px rgba(255, 112, 164, 0.8);
+    }
+
+    .hero-text {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+      margin-inline: auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 1.4rem;
+      padding: 1.5rem 1.3rem;
+      background: var(--glass);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.93rem;
+      color: var(--text-soft);
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      margin-bottom: 0.4rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .promise-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .promise-list li {
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .promise-list span.dot {
+      font-size: 0.8rem;
+      margin-top: 0.16rem;
+    }
+
+    .big-message {
+      margin-top: 2.6rem;
+      text-align: center;
+      max-width: 40rem;
+      margin-inline: auto;
+      padding: 1.8rem 1.4rem;
+      border-radius: 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: linear-gradient(145deg, rgba(255, 122, 170, 0.18), rgba(10, 1, 17, 0.96));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .big-line {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.9rem;
+      color: #ffe6f1;
+      margin-bottom: 0.5rem;
+    }
+
+    .big-text {
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .names {
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .names span {
+      font-family: "Great Vibes", cursive;
+      font-size: 1.4rem;
+      color: var(--accent-strong);
+    }
+
+    .cta-row {
+      margin-top: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff6b9c, #ff3062);
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(255, 61, 120, 0.6);
+    }
+
+    .btn-ghost {
+      background: rgba(10, 0, 18, 0.85);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--text-soft);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.4rem 1rem 2rem;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
+
+    footer span.heart {
+      color: var(--accent-strong);
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-bg" id="heartBg"></div>
+
+  <header>
+    <div class="container top-bar">
+      <a href="index.html" class="back-link">
+        ← Back to the confession
+      </a>
+      <div>Page 2 · Our Journey Starts Here</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-eyebrow">After you said “okay”</div>
+        <h1 class="hero-title">
+          Our journey starts here
+          <span class="script">Surya &amp; Prashali</span>
+        </h1>
+        <p class="hero-text">
+          The day you said “okay” is a day I will never forget.  
+          From that moment, my love is not only a feeling inside my heart –  
+          it became a promise to stand with you and grow with you, one small step at a time.
+        </p>
+      </section>
+
+      <section class="cards">
+        <article class="card">
+          <div class="card-tag">Little Dream 01</div>
+          <h2 class="card-title">Walking with you through everyday life</h2>
+          <p>
+            I don’t need a perfect movie love story.  
+            I just want the simple real moments with you –
+            sharing coffee, walking together, listening to you talk about your day,
+            being the first person you think of when you are happy or tired.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">Little Dream 02</div>
+          <h2 class="card-title">Growing together, not just loving today</h2>
+          <p>
+            I want to support your dreams, and I want you to feel safe with me.
+            Whatever you want to become, wherever life takes you,
+            I want to stand beside you, not in front, not behind – just with you.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">My promises</div>
+          <h2 class="card-title">What I want to give you</h2>
+          <ul class="promise-list">
+            <li><span class="dot">•</span><span>Respect – for your decisions, your space, your dreams.</span></li>
+            <li><span class="dot">•</span><span>Support – in your good days and especially in your hard days.</span></li>
+            <li><span class="dot">•</span><span>Honesty – I will not play with your trust or your heart.</span></li>
+            <li><span class="dot">•</span><span>Patience – with your fears, your doubts, and your pace.</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="big-message">
+        <div class="big-line">From today, it’s not just “I love you”…</div>
+        <p class="big-text">
+          It’s also: “I want to build something slowly, beautifully, and honestly with you.”
+          <br /><br />
+          I don’t know where life will take us, but I know one thing clearly –
+          I want to try, I want to put effort, and I want to choose you again and again.
+        </p>
+        <div class="names">
+          With love,<br />
+          <span>Surya</span>
+        </div>
+
+        <div class="cta-row">
+          <a href="index.html" class="btn btn-ghost">Read the confession again</a>
+          <a href="https://wa.me/" target="_blank" class="btn btn-primary">
+            Message me now 💬
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    This is just the first page of our story. <span class="heart">♥</span>
+  </footer>
+
+  <script>
+    // Floating hearts (same style as main page)
+    const heartBg = document.getElementById("heartBg");
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      const size = Math.random() * 16 + 10;
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      const duration = Math.random() * 8 + 8;
+      heart.style.animationDuration = duration + "s";
+      heart.style.opacity = Math.random() * 0.6 + 0.2;
+      heartBg.appendChild(heart);
+      setTimeout(() => heart.remove(), duration * 1000 + 1000);
+    }
+    setInterval(createHeart, 800);
+    for (let i = 0; i < 12; i++) setTimeout(createHeart, i * 200);
+  </script>
+</body>
+</html>
